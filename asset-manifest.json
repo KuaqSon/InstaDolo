@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/instadolo/static/css/main.2cce8147.chunk.css",
+    "main.js": "/instadolo/static/js/main.f0b78bd9.chunk.js",
+    "main.js.map": "/instadolo/static/js/main.f0b78bd9.chunk.js.map",
+    "runtime~main.js": "/instadolo/static/js/runtime~main.0d2c3ed3.js",
+    "runtime~main.js.map": "/instadolo/static/js/runtime~main.0d2c3ed3.js.map",
+    "static/js/2.b41502e9.chunk.js": "/instadolo/static/js/2.b41502e9.chunk.js",
+    "static/js/2.b41502e9.chunk.js.map": "/instadolo/static/js/2.b41502e9.chunk.js.map",
+    "index.html": "/instadolo/index.html",
+    "precache-manifest.722956cb55fe6dd85eeb0367ef4e3bdb.js": "/instadolo/precache-manifest.722956cb55fe6dd85eeb0367ef4e3bdb.js",
+    "service-worker.js": "/instadolo/service-worker.js",
+    "static/css/main.2cce8147.chunk.css.map": "/instadolo/static/css/main.2cce8147.chunk.css.map",
+    "static/media/logo.svg": "/instadolo/static/media/logo.5d5d9eef.svg"
+  }
+}
