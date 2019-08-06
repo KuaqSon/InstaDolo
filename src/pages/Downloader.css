@@ -43,10 +43,6 @@
   letter-spacing: 0.125rem;
 }
 
-.btt + .btt {
-  margin-top: 24px;
-}
-
 .field {
   --fieldBorderColor: #d1c4e9;
   --fieldBorderColorActive: #673ab7;

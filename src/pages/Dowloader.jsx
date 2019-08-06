@@ -2,11 +2,19 @@ import React, { Component } from "react";
 import "./Downloader.css";
 
 class Downloader extends Component {
-  onInputLinkChange = e => {
-    const text = e.target.value;
+  state = {
+    link: ""
+  };
+
+  downloadImage = () => {
+    const { link } = this.state;
+
+    if (!link) return;
+
   };
 
   render() {
+    const { link } = this.state;
     return (
       <div className="downloader-container">
         <div className="link-panel">
@@ -15,7 +23,8 @@ class Downloader extends Component {
               <input
                 className="field__input a-field__input"
                 placeholder="..."
-                onChange={this.onInputLinkChange}
+                onChange={e => this.setState({ link: e.target.value })}
+                value={link}
               />
               <span className="a-field__label-wrap">
                 <span className="a-field__label">Link to instagram post</span>
@@ -24,11 +33,8 @@ class Downloader extends Component {
           </div>
 
           <div className="download-buttons">
-            <button type="button" className="btt">
+            <button className="btt" onClick={() => this.downloadImage()}>
               Download
-            </button>
-            <button type="button" className="btt">
-              Paste from clipboard
             </button>
           </div>
         </div>
