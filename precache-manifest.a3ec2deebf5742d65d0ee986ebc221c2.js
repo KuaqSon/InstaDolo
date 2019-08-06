@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a644cfe55536e96419e0acbc8b06c6ed",
+    "revision": "bd3a59a28df588fcb2e4132e7c10d861",
     "url": "/instadolo/index.html"
   },
   {
-    "revision": "b824faee188953d6581c",
-    "url": "/instadolo/static/css/main.7ef50643.chunk.css"
+    "revision": "fd7471a1eec9461e84b8",
+    "url": "/instadolo/static/css/main.08d8981a.chunk.css"
   },
   {
     "revision": "681b51057d74cfa8975d",
     "url": "/instadolo/static/js/2.65aa1cca.chunk.js"
   },
   {
-    "revision": "b824faee188953d6581c",
+    "revision": "fd7471a1eec9461e84b8",
     "url": "/instadolo/static/js/main.ea46f24b.chunk.js"
   },
   {

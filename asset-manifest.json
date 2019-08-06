@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/instadolo/static/css/main.7ef50643.chunk.css",
+    "main.css": "/instadolo/static/css/main.08d8981a.chunk.css",
     "main.js": "/instadolo/static/js/main.ea46f24b.chunk.js",
     "main.js.map": "/instadolo/static/js/main.ea46f24b.chunk.js.map",
     "runtime~main.js": "/instadolo/static/js/runtime~main.0d2c3ed3.js",
@@ -8,9 +8,9 @@
     "static/js/2.65aa1cca.chunk.js": "/instadolo/static/js/2.65aa1cca.chunk.js",
     "static/js/2.65aa1cca.chunk.js.map": "/instadolo/static/js/2.65aa1cca.chunk.js.map",
     "index.html": "/instadolo/index.html",
-    "precache-manifest.9c03edc64b422c4d44c2bdcfedeb2642.js": "/instadolo/precache-manifest.9c03edc64b422c4d44c2bdcfedeb2642.js",
+    "precache-manifest.a3ec2deebf5742d65d0ee986ebc221c2.js": "/instadolo/precache-manifest.a3ec2deebf5742d65d0ee986ebc221c2.js",
     "service-worker.js": "/instadolo/service-worker.js",
-    "static/css/main.7ef50643.chunk.css.map": "/instadolo/static/css/main.7ef50643.chunk.css.map",
+    "static/css/main.08d8981a.chunk.css.map": "/instadolo/static/css/main.08d8981a.chunk.css.map",
     "static/media/logo.svg": "/instadolo/static/media/logo.5d5d9eef.svg"
   }
 }
