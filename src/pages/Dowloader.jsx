@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import PacmanLoader from "react-spinners/PacmanLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./Downloader.css";
 
@@ -21,7 +22,8 @@ class Downloader extends Component {
   state = {
     link: "",
     result_url: "",
-    post_title: ""
+    post_title: "",
+    loading: false
   };
 
   downloadImage = () => {
@@ -35,6 +37,8 @@ class Downloader extends Component {
       return;
     }
 
+    self.setState({ loading: true });
+
     axios
       .post(enpoint, {
         post_url: link
@@ -44,32 +48,36 @@ class Downloader extends Component {
 
         if (!data) {
           toast.error("Failed!");
-        }
-
-        const { isError, message } = data;
-
-        if (!isError) {
-          const {
-            resp: { src_url, title }
-          } = data;
-          toast("Yayyy, Get image successfully!");
-
-          self.setState({
-            result_url: src_url,
-            post_title: title
-          });
+          self.setState({ loading: false });
         } else {
-          toast.error(message || "Failed!");
+          const { isError, message } = data;
+
+          if (!isError) {
+            const {
+              resp: { src_url, title }
+            } = data;
+            toast("Yayyy, Get image successfully!");
+
+            self.setState({
+              result_url: src_url,
+              post_title: title,
+              loading: false
+            });
+          } else {
+            self.setState({ loading: false });
+            toast.error(message || "Failed!");
+          }
         }
       })
       .catch(function(error) {
+        self.setState({ loading: false });
         toast.error("Failed!");
         console.log(error);
       });
   };
 
   render() {
-    const { link, result_url, post_title } = this.state;
+    const { link, result_url, post_title, loading } = this.state;
     const cardClassName = `card card--${
       gradientBackgroundTypes[Math.floor(Math.random() * 9)]
     }`;
@@ -94,9 +102,21 @@ class Downloader extends Component {
             </label>
           </div>
           <div className="download-buttons">
-            <button className="btt" onClick={() => this.downloadImage()}>
-              Load Image
-            </button>
+            {!loading && (
+              <button className="btt" onClick={() => this.downloadImage()}>
+                Load Image
+              </button>
+            )}
+            {loading && (
+              <div style={{ marginLeft: "-24px", marginBottom: "24px" }}>
+                <PacmanLoader
+                  sizeUnit={"px"}
+                  size={24}
+                  color={"#fa8072"}
+                  loading={loading}
+                />
+              </div>
+            )}
           </div>
         </div>
         <ToastContainer

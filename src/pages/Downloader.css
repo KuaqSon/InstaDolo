@@ -53,6 +53,7 @@
   flex-direction: column;
   justify-content: center;
   max-width: 300px;
+  align-items: center;
 }
 
 .btt {
