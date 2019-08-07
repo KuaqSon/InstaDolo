@@ -46,13 +46,12 @@ class Downloader extends Component {
           toast.error("Failed!");
         }
 
-        const {
-          isError,
-          message,
-          resp: { src_url, title }
-        } = data;
+        const { isError, message } = data;
 
         if (!isError) {
+          const {
+            resp: { src_url, title }
+          } = data;
           toast("Yayyy, Get image successfully!");
 
           self.setState({
@@ -64,6 +63,7 @@ class Downloader extends Component {
         }
       })
       .catch(function(error) {
+        toast.error("Failed!");
         console.log(error);
       });
   };
@@ -73,7 +73,6 @@ class Downloader extends Component {
     const cardClassName = `card card--${
       gradientBackgroundTypes[Math.floor(Math.random() * 9)]
     }`;
-    console.log("result_url", result_url);
     return (
       <div className="downloader-container">
         <div className="intro">
@@ -101,16 +100,16 @@ class Downloader extends Component {
           </div>
         </div>
         <ToastContainer
-            autoClose={1500}
-            position="top-center"
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnVisibilityChange={false}
-            draggable
-            pauseOnHover={false}
-          />
+          autoClose={1500}
+          position="top-center"
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange={false}
+          draggable
+          pauseOnHover={false}
+        />
         {result_url && (
           // <div
           //   className="image-panel"
