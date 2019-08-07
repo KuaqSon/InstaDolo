@@ -23,6 +23,7 @@ class Downloader extends Component {
     link: "",
     result_url: "",
     post_title: "",
+    thumbnail_url: "",
     loading: false
   };
 
@@ -54,13 +55,14 @@ class Downloader extends Component {
 
           if (!isError) {
             const {
-              resp: { src_url, title }
+              resp: { src_url, title, thumbnail_url }
             } = data;
             toast("Yayyy, Get image successfully!");
 
             self.setState({
               result_url: src_url,
               post_title: title,
+              thumbnail_url: thumbnail_url,
               loading: false
             });
           } else {
@@ -77,7 +79,7 @@ class Downloader extends Component {
   };
 
   render() {
-    const { link, result_url, post_title, loading } = this.state;
+    const { link, result_url, post_title, thumbnail_url, loading } = this.state;
     const cardClassName = `card card--${
       gradientBackgroundTypes[Math.floor(Math.random() * 9)]
     }`;
@@ -131,15 +133,10 @@ class Downloader extends Component {
           pauseOnHover={false}
         />
         {result_url && (
-          // <div
-          //   className="image-panel"
-          //   style={{ backgroundImage: `url(${result_url})` }}
-          // />
-
           <div className={cardClassName}>
             <div
               className="card__image-container"
-              style={{ backgroundImage: `url(${result_url})` }}
+              style={{ backgroundImage: `url(${thumbnail_url})` }}
             />
             <div className="card__caption">
               <div>{post_title}</div>
