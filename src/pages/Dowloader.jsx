@@ -78,6 +78,35 @@ class Downloader extends Component {
       });
   };
 
+  saveFileFromUrl = (url, title) => {
+    const tit = (
+      title.replace(/[^\w\s]/gi, "") ||
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15)
+    )
+      .replace(/\s+/g, "_")
+      .toLocaleLowerCase();
+
+    const fileName = tit + (url.indexOf(".mp4") > 0 ? ".mp4" : ".jpg");
+
+    axios({
+      url: url,
+      method: "GET",
+      responseType: "blob" // important
+    }).then(response => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", fileName);
+      document.body.appendChild(link);
+      link.click();
+    });
+  };
+
   render() {
     const { link, result_url, post_title, thumbnail_url, loading } = this.state;
     const cardClassName = `card card--${
@@ -141,7 +170,10 @@ class Downloader extends Component {
             <div className="card__caption">
               <div>{post_title}</div>
               <div className="card__type">
-                <a href={result_url} target="_blank" className="cir-btn">
+                <a
+                  onClick={() => this.saveFileFromUrl(result_url, post_title)}
+                  className="cir-btn"
+                >
                   Download
                 </a>
               </div>
