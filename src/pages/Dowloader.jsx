@@ -5,7 +5,7 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./Downloader.css";
 
-const enpoint = "https://moneyfluapi.herokuapp.com/insta/image-urls";
+const enpoint = "https://moneyfluapi.herokuapp.com/insta/image-urls-v3";
 const gradientBackgroundTypes = [
   "normal",
   "water",
@@ -21,9 +21,8 @@ const gradientBackgroundTypes = [
 class Downloader extends Component {
   state = {
     link: "",
-    result_url: "",
+    result_urls: [],
     post_title: "",
-    thumbnail_url: "",
     loading: false
   };
 
@@ -41,8 +40,10 @@ class Downloader extends Component {
     self.setState({ loading: true });
 
     axios
-      .post(enpoint, {
-        post_url: link
+      .get(enpoint, {
+        params: {
+          post_url: link
+        }
       })
       .then(function(response) {
         const { data } = response;
@@ -55,14 +56,13 @@ class Downloader extends Component {
 
           if (!isError) {
             const {
-              resp: { src_url, title, thumbnail_url }
+              resp: { srcs, title }
             } = data;
-            toast("Yayyy, Get image successfully!");
+            toast.success("Yayyy, Get image successfully!");
 
             self.setState({
-              result_url: src_url,
+              result_urls: srcs,
               post_title: title,
-              thumbnail_url: thumbnail_url,
               loading: false
             });
           } else {
@@ -112,78 +112,89 @@ class Downloader extends Component {
   };
 
   render() {
-    const { link, result_url, post_title, thumbnail_url, loading } = this.state;
-    const cardClassName = `card card--${
-      gradientBackgroundTypes[Math.floor(Math.random() * 9)]
-    }`;
+    const { link, result_urls, post_title, loading } = this.state;
+    // const cardClassName = `card card--${
+    //   gradientBackgroundTypes[Math.floor(Math.random() * 9)]
+    // }`;
     return (
-      <div className="downloader-container">
-        <div className="intro">
-          <div className="app-name">Instagram downloader</div>
-          <div className="author">By: Quang Son Nguyen</div>
-        </div>
-        <div className="link-panel">
-          <div className="link-input">
-            <label className="field a-field a-field_a3 page__field">
-              <input
-                className="field__input a-field__input"
-                placeholder="..."
-                onChange={e => this.setState({ link: e.target.value })}
-                value={link}
-              />
-              <span className="a-field__label-wrap">
-                <span className="a-field__label">Link to instagram post</span>
-              </span>
-            </label>
+      <div>
+        <div className="downloader-container">
+          <div className="intro">
+            <div className="app-name">Instagram downloader</div>
+            <div className="author">By: Quang Son Nguyen</div>
           </div>
-          <div className="download-buttons">
-            {!loading && (
-              <button className="btt" onClick={() => this.downloadImage()}>
-                Load Image
-              </button>
-            )}
-            {loading && (
-              <div style={{ marginLeft: "-24px", marginBottom: "24px" }}>
-                <PacmanLoader
-                  sizeUnit={"px"}
-                  size={24}
-                  color={"#fa8072"}
-                  loading={loading}
+          <div className="link-panel">
+            <div className="link-input">
+              <label className="field a-field a-field_a3 page__field">
+                <input
+                  className="field__input a-field__input"
+                  placeholder="..."
+                  onChange={e => this.setState({ link: e.target.value })}
+                  value={link}
                 />
-              </div>
-            )}
-          </div>
-        </div>
-        <ToastContainer
-          autoClose={1500}
-          position="top-center"
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange={false}
-          draggable
-          pauseOnHover={false}
-        />
-        {result_url && (
-          <div className={cardClassName}>
-            <div
-              className="card__image-container"
-              style={{ backgroundImage: `url(${thumbnail_url})` }}
-            />
-            <div className="card__caption">
-              <div>{post_title}</div>
-              <div className="card__type">
-                <a
-                  onClick={() => this.saveFileFromUrl(result_url, post_title)}
-                  className="cir-btn"
-                >
-                  Download
-                </a>
-              </div>
+                <span className="a-field__label-wrap">
+                  <span className="a-field__label">Link to instagram post</span>
+                </span>
+              </label>
+            </div>
+            <div className="download-buttons">
+              {!loading && (
+                <button className="btt" onClick={() => this.downloadImage()}>
+                  Load Image
+                </button>
+              )}
+              {loading && (
+                <div style={{ marginLeft: "-24px", marginBottom: "24px" }}>
+                  <PacmanLoader
+                    sizeUnit={"px"}
+                    size={24}
+                    color={"#fa8072"}
+                    loading={loading}
+                  />
+                </div>
+              )}
             </div>
           </div>
-        )}
+          <ToastContainer
+            autoClose={2000}
+            position="top-center"
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange={false}
+            draggable
+            pauseOnHover={false}
+          />
+
+          {result_urls &&
+            result_urls.map(url => (
+              <div
+                className={`card card--${
+                  gradientBackgroundTypes[Math.floor(Math.random() * 9)]
+                }`}
+                style={{ maxWidth: "480px" }}
+                key={result_urls.indexOf(url)}
+              >
+                <div
+                  className="card__image-container"
+                  style={{ backgroundImage: `url(${url})` }}
+                />
+                <div className="card__caption">
+                  <div>{post_title}</div>
+                  <div className="card__type">
+                    <a
+                      onClick={() => this.saveFileFromUrl(url, post_title)}
+                      className="cir-btn"
+                      href="/"
+                    >
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
     );
   }
