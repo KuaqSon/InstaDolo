@@ -183,13 +183,12 @@ class Downloader extends Component {
                 <div className="card__caption">
                   <div>{post_title}</div>
                   <div className="card__type">
-                    <a
+                    <div
                       onClick={() => this.saveFileFromUrl(url, post_title)}
-                      className="cir-btn"
-                      href="/"
+                      className="cir-btn disable-select"
                     >
                       Download
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
