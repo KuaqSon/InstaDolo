@@ -22,7 +22,8 @@ class Downloader extends Component {
     link: "",
     result_urls: [],
     post_title: "",
-    loading: false
+    loading: false,
+    can_clear: false
   };
 
   downloadImage = () => {
@@ -106,7 +107,8 @@ class Downloader extends Component {
               });
             }
 
-            let title = `${full_name} on Instagram: ${edge_media_to_caption.edges[0].node.text || ""}`;
+            let title = `${full_name} on Instagram: ${edge_media_to_caption
+              .edges[0].node.text || ""}`;
 
             if (title.length > 100) {
               title = title.slice(0, 100);
@@ -164,8 +166,23 @@ class Downloader extends Component {
     }
   };
 
+  onUrlInputChange = e => {
+    const post_url = e.target.value;
+    this.setState({
+      link: post_url,
+      can_clear: post_url !== ""
+    });
+  };
+
+  clearUrlInput = () => {
+    this.setState({
+      link: "",
+      can_clear: false
+    });
+  };
+
   render() {
-    const { link, result_urls, post_title, loading } = this.state;
+    const { link, result_urls, post_title, loading, can_clear } = this.state;
     return (
       <div>
         <div className="downloader-container">
@@ -179,9 +196,17 @@ class Downloader extends Component {
                 <input
                   className="field__input a-field__input"
                   placeholder="..."
-                  onChange={e => this.setState({ link: e.target.value })}
+                  onChange={e => this.onUrlInputChange(e)}
                   value={link}
                 />
+                {can_clear && (
+                  <button
+                    className="btt-clear"
+                    onClick={() => this.clearUrlInput()}
+                  >
+                    Clear
+                  </button>
+                )}
                 <span className="a-field__label-wrap">
                   <span className="a-field__label">Link to instagram post</span>
                 </span>
