@@ -55,8 +55,6 @@ class Downloader extends Component {
 
           const results = JSON.parse(jsonObject);
 
-          console.log(results);
-
           if (results !== null) {
             const {
               entry_data: { PostPage }
