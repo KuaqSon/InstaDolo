@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "16dac78be0f1904e5e340c54926b4774",
+    "revision": "1d3b41b17a5f308659ee26ab4ec103a9",
     "url": "/instadolo/index.html"
   },
   {
@@ -8,16 +8,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/instadolo/static/css/2.39017165.chunk.css"
   },
   {
-    "revision": "371c97d1dd16da04a6cc",
-    "url": "/instadolo/static/css/main.74dcdfd6.chunk.css"
+    "revision": "134adbdff92f04ccc60f",
+    "url": "/instadolo/static/css/main.51fcef0b.chunk.css"
   },
   {
     "revision": "ad9cf0855f1d238f42f4",
     "url": "/instadolo/static/js/2.e6e6bf9b.chunk.js"
   },
   {
-    "revision": "371c97d1dd16da04a6cc",
-    "url": "/instadolo/static/js/main.16cf2a24.chunk.js"
+    "revision": "134adbdff92f04ccc60f",
+    "url": "/instadolo/static/js/main.981695f9.chunk.js"
   },
   {
     "revision": "e6548080053614d52ece",

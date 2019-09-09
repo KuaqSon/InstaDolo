@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/instadolo/static/css/main.74dcdfd6.chunk.css",
-    "main.js": "/instadolo/static/js/main.16cf2a24.chunk.js",
-    "main.js.map": "/instadolo/static/js/main.16cf2a24.chunk.js.map",
+    "main.css": "/instadolo/static/css/main.51fcef0b.chunk.css",
+    "main.js": "/instadolo/static/js/main.981695f9.chunk.js",
+    "main.js.map": "/instadolo/static/js/main.981695f9.chunk.js.map",
     "runtime~main.js": "/instadolo/static/js/runtime~main.0d2c3ed3.js",
     "runtime~main.js.map": "/instadolo/static/js/runtime~main.0d2c3ed3.js.map",
     "static/css/2.39017165.chunk.css": "/instadolo/static/css/2.39017165.chunk.css",
     "static/js/2.e6e6bf9b.chunk.js": "/instadolo/static/js/2.e6e6bf9b.chunk.js",
     "static/js/2.e6e6bf9b.chunk.js.map": "/instadolo/static/js/2.e6e6bf9b.chunk.js.map",
     "index.html": "/instadolo/index.html",
-    "precache-manifest.2d1ea1a25ba22b55bbf851093a3a34fe.js": "/instadolo/precache-manifest.2d1ea1a25ba22b55bbf851093a3a34fe.js",
+    "precache-manifest.5d36d94f4b61a5c7932e8a4a6a123ff7.js": "/instadolo/precache-manifest.5d36d94f4b61a5c7932e8a4a6a123ff7.js",
     "service-worker.js": "/instadolo/service-worker.js",
     "static/css/2.39017165.chunk.css.map": "/instadolo/static/css/2.39017165.chunk.css.map",
-    "static/css/main.74dcdfd6.chunk.css.map": "/instadolo/static/css/main.74dcdfd6.chunk.css.map"
+    "static/css/main.51fcef0b.chunk.css.map": "/instadolo/static/css/main.51fcef0b.chunk.css.map"
   }
 }
