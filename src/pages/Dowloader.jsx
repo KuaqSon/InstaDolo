@@ -5,7 +5,6 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./Downloader.css";
 
-const enpoint = "https://moneyfluapi.herokuapp.com/insta/image-urls-v3";
 const gradientBackgroundTypes = [
   "normal",
   "water",
@@ -40,11 +39,7 @@ class Downloader extends Component {
     self.setState({ loading: true });
 
     axios
-      .get(enpoint, {
-        params: {
-          post_url: link
-        }
-      })
+      .get(link)
       .then(function(response) {
         const { data } = response;
 
@@ -52,14 +47,74 @@ class Downloader extends Component {
           toast.error("Failed!");
           self.setState({ loading: false });
         } else {
-          const { isError, message } = data;
+          const jsonObject = data
+            .match(
+              /<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
+            )[1]
+            .slice(0, -1);
 
-          if (!isError) {
+          const results = JSON.parse(jsonObject);
+
+          console.log(results);
+
+          if (results !== null) {
             const {
-              resp: { srcs, title }
-            } = data;
-            toast.success("Yayyy, Get image successfully!");
+              entry_data: { PostPage }
+            } = results;
 
+            const {
+              graphql: { shortcode_media }
+            } = PostPage[0];
+
+            const {
+              edge_sidecar_to_children,
+              display_resources,
+              edge_media_to_caption,
+              is_video,
+              video_url,
+              owner: { full_name }
+            } = shortcode_media;
+
+            let srcs = [];
+
+            if (is_video) {
+              srcs.push({
+                thumbnail: display_resources.pop().src,
+                src: video_url
+              });
+            } else if (edge_sidecar_to_children) {
+              srcs = edge_sidecar_to_children.edges.map(x => {
+                const { display_resources, is_video, video_url } = x.node;
+
+                const img_src = display_resources.pop().src;
+
+                if (is_video) {
+                  return {
+                    thumbnail: img_src,
+                    src: video_url
+                  };
+                } else {
+                  return {
+                    thumbnail: img_src,
+                    src: img_src
+                  };
+                }
+              });
+            } else {
+              const src = display_resources.pop().src;
+              srcs.push({
+                thumbnail: src,
+                src: src
+              });
+            }
+
+            let title = `${full_name} on Instagram: ${edge_media_to_caption.edges[0].node.text || ""}`;
+
+            if (title.length > 100) {
+              title = title.slice(0, 100);
+            }
+
+            toast.success("Yayyy, Get image successfully!");
             self.setState({
               result_urls: srcs,
               post_title: title,
@@ -67,7 +122,7 @@ class Downloader extends Component {
             });
           } else {
             self.setState({ loading: false });
-            toast.error(message || "Failed!");
+            toast.error("Failed!");
           }
         }
       })
@@ -113,9 +168,6 @@ class Downloader extends Component {
 
   render() {
     const { link, result_urls, post_title, loading } = this.state;
-    // const cardClassName = `card card--${
-    //   gradientBackgroundTypes[Math.floor(Math.random() * 9)]
-    // }`;
     return (
       <div>
         <div className="downloader-container">
@@ -168,23 +220,25 @@ class Downloader extends Component {
           />
 
           {result_urls &&
-            result_urls.map(url => (
+            result_urls.map(result => (
               <div
                 className={`card card--${
                   gradientBackgroundTypes[Math.floor(Math.random() * 9)]
                 }`}
                 style={{ maxWidth: "480px" }}
-                key={result_urls.indexOf(url)}
+                key={result_urls.indexOf(result)}
               >
                 <div
                   className="card__image-container"
-                  style={{ backgroundImage: `url(${url})` }}
+                  style={{ backgroundImage: `url(${result.thumbnail})` }}
                 />
                 <div className="card__caption">
                   <div>{post_title}</div>
                   <div className="card__type">
                     <div
-                      onClick={() => this.saveFileFromUrl(url, post_title)}
+                      onClick={() =>
+                        this.saveFileFromUrl(result.src, post_title)
+                      }
                       className="cir-btn disable-select"
                     >
                       Download
