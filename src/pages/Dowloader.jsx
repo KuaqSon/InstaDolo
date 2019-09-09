@@ -256,7 +256,7 @@ class Downloader extends Component {
                   style={{ backgroundImage: `url(${result.thumbnail})` }}
                 />
                 <div className="card__caption">
-                  <div>{post_title}</div>
+                  <div className="card__caption__text">{post_title}</div>
                   <div className="card__type">
                     <div
                       onClick={() =>

@@ -290,6 +290,10 @@ LEVEL 3. PRESENTATION STYLES
   position: relative;
   border-radius: 0 0 3px 3px;
   display: flex;
+  justify-content: space-between;
+}
+.card__caption__text {
+  width: 60%;
 }
 .card__image-container {
   background-color: rgba(0, 0, 0, 0.7);
