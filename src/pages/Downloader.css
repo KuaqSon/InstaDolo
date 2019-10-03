@@ -10,7 +10,8 @@
   border-radius: 15px;
   background-color: #fff;
   padding: 32px 24px;
-  box-shadow: 0px 5px 20px -10px #111111;
+  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+
 }
 
 .app-name {
@@ -55,7 +56,7 @@
   border-radius: 15px;
   background-color: #fff;
   padding: 32px 24px;
-  box-shadow: 0px 5px 20px -10px #111111;
+  box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5);
 }
 
 .image-panel {
@@ -280,7 +281,8 @@ LEVEL 3. PRESENTATION STYLES
   border-radius: 15px;
   background: #ddd;
   text-align: left;
-  box-shadow: 0px 5px 20px -10px #111111;
+  /* box-shadow: 0px 5px 20px -10px #111111; */
+  box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5);
   position: relative;
   transition: 0.4s;
 }
@@ -481,7 +483,8 @@ LEVEL 3. PRESENTATION STYLES
   font-weight: 700 !important;
   border: none;
   letter-spacing: 3px;
-  background: none;
+  background: #fff;
+  z-index: 999;
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   transition: all 0.3s ease 0s;
