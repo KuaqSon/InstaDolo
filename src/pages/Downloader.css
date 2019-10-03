@@ -1,12 +1,18 @@
+.instadolo {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .downloader-container {
   max-width: 500px;
-  margin: 0 auto !important;
   display: flex;
   flex-direction: column;
+  flex-basis: 100%;
 }
 
 .intro {
-  margin: 32px 16px 0 16px;
+  margin: 16px 16px 0 16px;
   border-radius: 15px;
   background-color: #fff;
   padding: 32px 24px;

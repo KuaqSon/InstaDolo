@@ -184,7 +184,7 @@ class Downloader extends Component {
   render() {
     const { link, result_urls, post_title, loading, can_clear } = this.state;
     return (
-      <div>
+      <div className="instadolo">
         <div className="downloader-container">
           <div className="intro">
             <div className="app-name">Instagram downloader</div>
@@ -241,9 +241,10 @@ class Downloader extends Component {
             draggable
             pauseOnHover={false}
           />
-
-          {result_urls &&
-            result_urls.map(result => (
+        </div>
+        {result_urls && result_urls.length > 0 && (
+          <div className="downloader-container">
+            {result_urls.map(result => (
               <div
                 className={`card card--${
                   gradientBackgroundTypes[Math.floor(Math.random() * 9)]
@@ -270,7 +271,8 @@ class Downloader extends Component {
                 </div>
               </div>
             ))}
-        </div>
+          </div>
+        )}
       </div>
     );
   }
